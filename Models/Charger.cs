@@ -7,7 +7,7 @@ namespace SarbjitChargerMarket.Models
     public class Charger
     {
         public int Id { get; set; }
-        [StringLength(60, MinimumLength = 3)]
+        [StringLength(60, MinimumLength = 3)] //validation 
         [Required]
         public string Name { get; set; }
         [StringLength(60, MinimumLength = 3)]

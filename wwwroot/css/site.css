@@ -6,7 +6,6 @@ a.navbar-brand {
   text-align: center;
   word-break: break-all;
 }
-
 /* Provide sufficient contrast against white background */
 a {
   color: #0366d6;
@@ -36,10 +35,10 @@ html {
 }
 
 .border-top {
-  border-top: 1px solid #e5e5e5;
+  border-top: 1px solid #bebebe;
 }
 .border-bottom {
-  border-bottom: 1px solid #e5e5e5;
+  border-bottom: 1px solid #bebebe;
 }
 
 .box-shadow {
