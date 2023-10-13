@@ -20,9 +20,33 @@ namespace SarbjitChargerMarket.Controllers
         }
 
         // GET: Chargers
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string chargerType, string searchString)
         {
-            return View(await _context.Charger.ToListAsync());
+            // Use LINQ to get list of genres.
+            IQueryable<string> typeQuery = from m in _context.Charger
+                                            orderby m.Type
+                                            select m.Type;
+
+            var chargers = from m in _context.Charger
+                         select m;
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                chargers = chargers.Where(s => s.Name.Contains(searchString));
+            }
+
+            if (!string.IsNullOrEmpty(chargerType))
+            {
+                chargers = chargers.Where(x => x.Type == chargerType);
+            }
+
+            var chargerTypeVM = new ChargerTypeViewModel
+            {
+                Types = new SelectList(await typeQuery.Distinct().ToListAsync()),
+                Chargers = await chargers.ToListAsync()
+            };
+
+            return View(chargerTypeVM);
         }
 
         // GET: Chargers/Details/5
